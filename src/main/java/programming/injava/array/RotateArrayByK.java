@@ -1,12 +1,13 @@
 package programming.injava.array;
 
 /**
+ * 
  * Rotate Array
  * 
  * **/
 public class RotateArrayByK {
 
-	//In Anti clockwise
+	// In anti clockwise with O(n) space and O(n) time complexity
 	private static int[] roateByK(int[] arr, int k) {
 		int len = arr.length;
 		int[] rotatedArr =  new int[len];
@@ -18,7 +19,7 @@ public class RotateArrayByK {
 		return rotatedArr;
 	}
 	
-	// In clock wise
+	// In clock wise 
 	private static void rotateArrayWithNoExtraSpace(int[] arr, int k) {
 		swap(arr, 0, arr.length - 1);
 		swap(arr, 0, k - 1);

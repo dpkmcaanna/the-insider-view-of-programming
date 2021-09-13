@@ -17,14 +17,21 @@ public class SlidingWindowMax {
 
 	private static List<Integer> findSlidingWindowMaxUsingHeap(int[] array, int k) {
 	
+		// Priority queue to keep larger element by index at head
 		PriorityQueue<Pair> maxHeap = new PriorityQueue<Pair>();
+		
+		//List to keep adding max element of each window
 		List<Integer> maxList = new ArrayList<Integer>();
 		
 		for(int i = 0; i <= (array.length - 1); i++) {
+			
+			// while queue is not empty and first element is not out of window
+			// To maintain element in desc order
 			while(!maxHeap.isEmpty() && maxHeap.peek().getIndex() <= (i - k)) {
 				maxHeap.remove();
 			}
 			
+			// Now h
 			maxHeap.add(new Pair(i, array[i]));
 			
 			// Add element to max if we have reached slide window of size k
@@ -77,6 +84,7 @@ class Pair implements Comparable<Pair>{
 	
 	@Override
 	public int compareTo(Pair pair) {
+		// compare element value object2 - object1 for desc order here we have object1 = this and object2 = pair
 		return pair.value - this.value;
 	}
 }
