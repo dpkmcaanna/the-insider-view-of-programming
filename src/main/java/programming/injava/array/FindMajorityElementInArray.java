@@ -6,8 +6,7 @@ public class FindMajorityElementInArray {
 	private static void isMajorityElement(int[] arr, int x) {
 		int len = arr.length;
 
-		// to point 2nd pointer as mid this mid index if len = 5, then mid = 2 [i.e 0,
-		// 1, 2]
+		// to point 2nd pointer as mid this mid index if len = 5, then mid = 2 [i.e 0, 1, 2]
 		// if len = 6, then mid = 3 [i.e 0, 1, 2, 3], fourth element
 		int mid = len / 2;
 		for (int i = 0; i < mid; i++) {
@@ -19,6 +18,13 @@ public class FindMajorityElementInArray {
 		System.out.println("False");
 	}
 
+	/**
+	 * The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+	 * **/
+	private static void isMajorityElementInUnOrderedArray(int[] arr, int x) {
+		
+	}
+	
 	public static void main(String[] args) {
 		isMajorityElement(new int[] { 1, 1, 2, 2, 3 }, 2); // i = 1, mid = 2
 		isMajorityElement(new int[] { 1, 2, 3, 3, 3, 3, 10 }, 3);
