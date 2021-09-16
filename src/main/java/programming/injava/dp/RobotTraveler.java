@@ -9,9 +9,9 @@ public class RobotTraveler {
 
 		long start = System.currentTimeMillis();
 
-		System.out.println(findTravelDistanceUsingRecursion(100, 100, new HashMap<String, Long>()));
+		System.out.println("Number of path for travelling from [0][0] to [m][n]: " + findTravelDistanceUsingRecursion(2, 2, new HashMap<String, Long>()));
 
-		System.out.println("Total runtime: " + (System.currentTimeMillis() - start));
+		System.err.println("\nTravelling time from [0][0] to [m][n]: " + (System.currentTimeMillis() - start));
 	}
 
 	public static Long findTravelDistanceUsingRecursion(int m, int n, Map<String, Long> cache) {
@@ -19,7 +19,7 @@ public class RobotTraveler {
 		if (cache.containsKey(key))
 			return cache.get(key);
 
-		if (m == 1 && n == 1)
+		if (m == 1 && n == 1) 
 			return 1l;
 		if (m == 0 || n == 0)
 			return 0l;
