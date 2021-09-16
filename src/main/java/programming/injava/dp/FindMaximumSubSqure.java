@@ -41,9 +41,9 @@ public class FindMaximumSubSqure {
 					mem[i][j] = Integer.min(Integer.min(mem[i - 1][j], mem[i][j - 1]), mem[i -1][j - 1]) + 1;
 				
 				if(mem[i][j] > maxSqureLen) {
-					maxSqureLen = mem[i][j];
-					max_i = i;
-					max_j = j;
+					maxSqureLen = mem[i][j]; // calculate size of sub matrix
+					max_i = i; // memorizing row index of sub matix
+					max_j = j; // memorizing column index of sub matix
 				}
 			}
 		}
