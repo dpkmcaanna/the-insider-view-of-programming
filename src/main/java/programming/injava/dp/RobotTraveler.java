@@ -9,9 +9,16 @@ public class RobotTraveler {
 
 		long start = System.currentTimeMillis();
 
-		System.out.println("Number of path for travelling from [0][0] to [m][n]: " + findTravelDistanceUsingRecursion(2, 2, new HashMap<String, Long>()));
+		System.out.println("Number of path for travelling using recursion from [0][0] to [m][n]: " + findTravelDistanceUsingRecursion(112, 112, new HashMap<String, Long>()));
 
-		System.err.println("\nTravelling time from [0][0] to [m][n]: " + (System.currentTimeMillis() - start));
+		System.err.println("\nTravelling time using recursion from [0][0] to [m][n]: " + (System.currentTimeMillis() - start));
+		
+		
+		start = System.currentTimeMillis();
+
+		System.out.println("Number of path for travelling using mem matrix from [0][0] to [m][n]: " + findNumberOfPath(112, 112));
+
+		System.err.println("\nTravelling time using mem matrix  from [0][0] to [m][n]: " + (System.currentTimeMillis() - start));
 	}
 
 	public static Long findTravelDistanceUsingRecursion(int m, int n, Map<String, Long> cache) {
@@ -29,5 +36,34 @@ public class RobotTraveler {
 		cache.put(key, pathCount);
 
 		return pathCount;
+	}
+	
+	public static long findNumberOfPath(int row, int col) {
+		
+		if(row == 1 || col == 1)
+			return 1;
+		
+		if(row == 0 || col == 0)
+			return 1;
+		
+		long[][] mem =  new long[row][col];
+		
+		int i = 0;
+		
+		//no of way to traverse first row = 1
+		for(i = 0; i < row; i++)
+			mem[0][i] = 1;
+		
+		//no of way to traverse first col = 1
+		for(i = 0; i < col; i++)
+			mem[i][0] = 1;
+		
+		for(i = 1; i < row; i++) {
+			for(int j = 1; j < col; j++) {
+				mem[i][j] = mem[i - 1][j] + mem[i][j - 1];
+			}
+		}
+		
+		return mem[row - 1][col - 1];
 	}
 }
