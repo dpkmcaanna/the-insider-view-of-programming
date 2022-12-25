@@ -18,14 +18,14 @@ public class SlidingWindowMax {
 	private static List<Integer> findSlidingWindowMaxUsingHeap(int[] array, int k) {
 	
 		// Priority queue to keep larger element by index at head
-		PriorityQueue<Pair> maxHeap = new PriorityQueue<Pair>();
+		PriorityQueue<Pair> maxHeap = new PriorityQueue<Pair>(); // In Java priority queue is used as heap based on comparision type to make max and min heap
 		
 		//List to keep adding max element of each window
 		List<Integer> maxList = new ArrayList<Integer>();
 		
 		for(int i = 0; i <= (array.length - 1); i++) {
 			
-			// while queue is not empty and first element is not out of window
+			// while queue is not empty and first element is out of window
 			// To maintain element in desc order
 			while(!maxHeap.isEmpty() && maxHeap.peek().getIndex() <= (i - k)) {
 				maxHeap.remove();
@@ -34,7 +34,7 @@ public class SlidingWindowMax {
 			// Now h
 			maxHeap.add(new Pair(i, array[i]));
 			
-			// Add element to max if we have reached slide window of size k
+			// Add element to max if we have reached slide window of size k since i start from 0 and k =2 so i==1 will be window size of 2
 			if(i >= k - 1) {
 				maxList.add(maxHeap.peek().getValue());
 			}

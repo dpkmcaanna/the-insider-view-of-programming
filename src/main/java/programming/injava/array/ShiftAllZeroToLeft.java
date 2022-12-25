@@ -53,11 +53,14 @@ public class ShiftAllZeroToLeft {
 		int len = arr.length;
 		int left = len -1, right = len - 1;
 		
+		//Move left pointer to first zero element
 		while(left >=0 && arr[left] > 0) left--;
 		
-		right = left;
+		// Now both pointer points to first zero element from right and then move right pointer 
+		// to left till first non-zero element found
+		right = left; 
 		
-		while(right >= 0 && left >= 0) {
+		while(right >= 0 && left >= 0) { // Move pointer left till index > 0
 			if(right < left && (arr[right] != 0 && arr[left] == 0)) {
 				arr[left--] = arr[right];
 				arr[right--] = 0;

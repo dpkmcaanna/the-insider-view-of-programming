@@ -1,5 +1,10 @@
 package programming.injava.array;
 
+/**
+ * 
+ * The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+ * 
+ * **/
 public class FindMajorityElementInArray {
 
 	// find x is majority as n/2 element or not in sorted array
@@ -17,10 +22,7 @@ public class FindMajorityElementInArray {
 		}
 		System.out.println("False");
 	}
-
-	/**
-	 * The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
-	 * **/
+	
 	private static void isMajorityElementInUnOrderedArray(int[] arr, int x) {
 		
 	}

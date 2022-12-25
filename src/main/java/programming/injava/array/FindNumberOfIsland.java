@@ -11,10 +11,10 @@ package programming.injava.array;
 public class FindNumberOfIsland {
 	
 	private static void traverseIsland(int[][] matrix, int x, int y, int r, int c) {
-		if(x < 0 || x >= r || y < 0 || y >= c || matrix[x][y] != 1)
+		if(x < 0 || x >= r || y < 0 || y >= c || matrix[x][y] != 1) // check x and y are inside the boundary and not 0
 			return;
 		
-		matrix[x][y] = 2;
+		matrix[x][y] = 2; // To mark connected cell
 		
 		traverseIsland(matrix, x, y + 1, r, c); // RIGHT
 		traverseIsland(matrix, x, y - 1, r, c); // LEFT

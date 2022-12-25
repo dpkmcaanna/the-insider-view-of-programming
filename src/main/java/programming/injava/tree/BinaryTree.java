@@ -1,6 +1,7 @@
 package programming.injava.tree;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -15,6 +16,10 @@ public class BinaryTree<T extends Comparable<T>> {
 	
 	public void add(T data) {
 	  	root = addRecursive(root, data);
+	}
+	
+	public TreeNode<T> getRoot() {
+		return root;
 	}
 	
 	private TreeNode<T> addRecursive(TreeNode<T> currentNode, T data) {
@@ -36,12 +41,15 @@ public class BinaryTree<T extends Comparable<T>> {
 		if(root == null)
 			System.out.println("Tree is empty");
 		
+		System.out.println("");
 		inOrderTraversal(root);
 	}
 	
 	public void traversPostOrder() {
 		if(root == null)
 			System.out.println("Tree is empty");
+		
+		System.out.println("");
 		
 		postOrderTraversal(root);
 	}
@@ -50,6 +58,7 @@ public class BinaryTree<T extends Comparable<T>> {
 		if(root == null)
 			System.out.println("Tree is empty");
 		
+		System.out.println("");
 		preOrderTraversal(root);
 	}
 	
@@ -99,10 +108,58 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 	}
 	
-	public static void main(String[] args) {
-
-		BinaryTree<Integer> bt =  new BinaryTree<Integer>();
+	/**
+	 * Print left child of each level of tree
+	 * 
+	 * 			3
+	 * `	2		4
+	 * 					6
+	 * 				5
+	 * 
+	 * o/p - 3, 2, 6, 5
+	 * **/
+	public void printleftChildOfEachLevel() {
 		
+		if(root == null)
+			System.out.println("Tree is empty");
+		
+		Queue<TreeNode<T>> allNodeInCurrentlevel = new LinkedList<TreeNode<T>>();
+		allNodeInCurrentlevel.add(root);
+				
+		while(!allNodeInCurrentlevel.isEmpty()) {
+						
+			int allNodeAtThiLevel = allNodeInCurrentlevel.size();
+			
+			for(int i = 0; i < allNodeAtThiLevel; i++) {
+				TreeNode<T> node = allNodeInCurrentlevel.remove();
+				
+				if(i == 0) {
+					System.out.println(" " + node.getData());
+				}
+				
+				if(node.getLeft() != null) {
+					allNodeInCurrentlevel.add(node.getLeft());
+				}
+				
+				if(node.getRight() != null) {
+					allNodeInCurrentlevel.add(node.getRight());
+				}
+			}
+		}
+	}
+	
+	public List<List<Integer>> zigzagLevelOrder() {
+		
+		return null;
+    }
+
+	 /*        6
+  			4    8
+  		  3  5  7  9 
+	 * */
+	public static BinaryTree<Integer> test_case_1() {
+		BinaryTree<Integer> bt =  new BinaryTree<Integer>();
+				
 		bt.add(6);
 	    bt.add(4);
 	    bt.add(8);
@@ -110,18 +167,84 @@ public class BinaryTree<T extends Comparable<T>> {
 	    bt.add(5);
 	    bt.add(7);
 	    bt.add(9);
-	    
-	    System.err.println("\nTravers BT inorder Left Root Right");
-		bt.traversInOrder();
+	    return bt;
+	}
+	
+	/*
+	  * 		3
+ 		`	2		4
+ 						6
+ 					5
+ 
+ 		o/p - 3, 2, 6, 5
+	 * */
+	public static BinaryTree<Integer> test_case_2() {
+		BinaryTree<Integer> bt = new BinaryTree<Integer>();
+		bt.add(3);
+		bt.add(2);
+		bt.add(4);
+		bt.add(6);
+		bt.add(5);
+	    return bt;
+	}
+	
+	/*
+	 *      5
+           / \
+          4    9
+             /   \
+            7     12
+          /  \	   \
+         6     8    15
+	 *               \
+	 *               19
+	 *               /
+	 *              18
+	 *              /
+	 *              17
+	 */
+	public static BinaryTree<Integer> test_case_3() {
+		BinaryTree<Integer> bt =  new BinaryTree<Integer>();
+		bt.add(5);
+		bt.add(4);
+		bt.add(9);
+		bt.add(7);
+		bt.add(6);
+		bt.add(8);
+		bt.add(12);
+		bt.add(15);
+		bt.add(19);
+		bt.add(18);
+		bt.add(17);
+	    return bt;
+	}
+	
+	public static void printTree(BinaryTree<Integer> bt) {
+		System.err.println("\nTravers BT inorder [Left Root Right] - Expected: ");
+	    bt.traversInOrder();
 		
-		System.err.println("\nTravers BT postorder Left Right Root");
+		System.err.println("\nTravers BT postorder [Left Right Root] - Expected:");
 		bt.traversPostOrder();
 		
-		System.err.println("\nTravers BT preorder Root Left Right");
+		System.err.println("\nTravers BT preorder [Root Left Right] - Expected: ");
 		bt.traversPreOrder();
 		
 		System.err.println("\nTravers BT in level order");
 		bt.traverseLevelOrder();
+		
+		System.out.println("\n Print left most child of each level: ");
+		bt.printleftChildOfEachLevel();
+	}
+	
+	public static void main(String[] args) {
+		BinaryTree<Integer> bt = test_case_1();
+		printTree(bt);
+	    
+		bt = test_case_2();
+		printTree(bt);
+		
+		bt = test_case_3();
+		printTree(bt);
 	}
 
 }

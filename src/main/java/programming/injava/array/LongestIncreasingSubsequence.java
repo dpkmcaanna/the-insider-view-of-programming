@@ -2,6 +2,9 @@ package programming.injava.array;
 
 import java.util.Arrays;
 
+/**
+ * Find length of longest subsequence i.e. non continues array
+ * **/
 public class LongestIncreasingSubsequence {
 
 	public static void main(String[] args) {
@@ -16,11 +19,14 @@ public class LongestIncreasingSubsequence {
 		
 		int[] temp = new int[arr.length];
 		
-		Arrays.fill(temp, 1); // Every elemnt is subsequnce of len 1
+		Arrays.fill(temp, 1); // Every element is subsequnce of len 1
+		
+		// arr[i] >  arr[j] -> ensure sequence is always increasing 
+		// &&  temp[i] < temp[j] + 1 -> ensure length is less than next at jth position
 		
 		for(int i = 1; i < arr.length; i++) {
 			for(int j = 0; j < i; j++)
-				if(arr[i] >  arr[j] && temp[i] < temp[j] + 1) // arr[i] >  arr[j] -> ensure sequence is always increasing &&  temp[i] < temp[j] + 1 -> ensure length is less than next at jth position
+				if(arr[i] >  arr[j] && temp[i] < temp[j] + 1) 
 					temp[i] = temp[j] + 1;
 		}
 		
