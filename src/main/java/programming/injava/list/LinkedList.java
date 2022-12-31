@@ -25,16 +25,46 @@ public class LinkedList<T> {
 		return node;
 	}
 
+	public ListNode<T> addAtIndex(@NonNull T data, int pos) {
+		
+		if(pos < 1 || pos > size() + 1) {
+			throw new RuntimeException("Index to add element is incorrect"); 
+		}
+		
+		//case 1: Add element add first
+		ListNode<T> node = new ListNode<T>(data);
+
+		if (pos == 1) {
+			node.setNext(head);
+			head = node;
+			return head;
+		}
+
+		// 1 4 -> 2 3 -> 3 2 -> 4 1 -> 5
+		ListNode<T> temp = head;
+
+		pos--;
+		while (temp.getNext() != null && pos > 1) {
+			temp = temp.getNext();
+			pos--;
+		}
+		node.setNext(temp.getNext());
+		temp.setNext(node);
+		return node;
+	}
+	
 	public void printList() {
+		System.out.print("[ ");
 		ListNode<T> temp = head;
 		if (temp == null) {
 			System.out.println("List is empty");
 		}
 
 		while (temp != null) {
-			System.out.println(temp.getData());
+			System.out.print(temp.getData() + " ");
 			temp = temp.getNext();
 		}
+		System.out.println("]");
 	}
 
 	public int size() {
@@ -69,10 +99,33 @@ public class LinkedList<T> {
 		linkedList.add(5);
 		//linkedList.add(6);
 
-		linkedList.printList();
+		// linkedList.printList();
 		System.out.println("Size of list: " + linkedList.size());
 
+	//	linkedList.printMiddleOfList();
+		
+		linkedList.addAtIndex(6, 3);
+
+		linkedList.printList();
 		linkedList.printMiddleOfList();
+		
+		linkedList.addAtIndex(6, 1);
+
+		linkedList.printList();
+		
+		linkedList.printMiddleOfList();
+		
+		linkedList = new LinkedList<>();
+		
+		linkedList.addAtIndex(6, 1);
+
+		linkedList.printList();
+		linkedList.printMiddleOfList();
+		
+		//linkedList.addAtIndex(6, 0);
+		
+		linkedList.addAtIndex(6, 5);
+
 	}
 
 }
