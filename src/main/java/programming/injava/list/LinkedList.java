@@ -40,6 +40,10 @@ public class LinkedList<T> {
 			return head;
 		}
 
+		if(head == null) {
+			throw new RuntimeException("Illigal operation");
+		}
+		
 		// 1 4 -> 2 3 -> 3 2 -> 4 1 -> 5
 		ListNode<T> temp = head;
 
@@ -57,7 +61,7 @@ public class LinkedList<T> {
 		System.out.print("[ ");
 		ListNode<T> temp = head;
 		if (temp == null) {
-			System.out.println("List is empty");
+			System.out.print("List is empty");
 		}
 
 		while (temp != null) {
@@ -77,7 +81,10 @@ public class LinkedList<T> {
 		return count;
 	}
 
-	public void printMiddleOfList() {
+	public T printMiddleOfList() {
+		if(head == null)
+			throw new RuntimeException("List is empty");
+		
 		ListNode<T> slowPtr = head;
 		ListNode<T> fastPtr = head;
 		
@@ -86,9 +93,70 @@ public class LinkedList<T> {
 			fastPtr = fastPtr.getNext().getNext();
 		}
 		
-		System.out.println("Mid of list: " + slowPtr.getData());
+		return slowPtr.getData();
+		//System.out.println("Mid of list: " + slowPtr.getData());
+	}
+	
+	public void deleteMiddleElement() {
+		if(head.getNext() == null) {
+			head = null;
+		}
+		
+		ListNode<T> slowPtr = head;
+		ListNode<T> fastPtr = head;
+		ListNode<T> prev = head;
+		
+		while (fastPtr != null && fastPtr.getNext() != null) {
+			prev = slowPtr;
+			slowPtr = slowPtr.getNext();
+			fastPtr = fastPtr.getNext().getNext();
+		}
+		
+		if(slowPtr != null && slowPtr != prev) {
+			prev.setNext(slowPtr.getNext());
+			slowPtr.setNext(null);
+		}
+	}
+	
+	public void clear() {
+		if(head == null) 
+			return;
+		
+		ListNode<T> prv = head;
+		head = head.getNext();
+		while(head != null) {
+			prv.setNext(null);
+			prv = head;
+			head = head.getNext();
+		}
+		prv = null;
 	}
 
+	public void printReverse(ListNode<T> node) {
+		if(node == null)
+			return;
+		
+		printReverse(node.getNext());
+		
+		System.out.print(node.getData() + " ");
+	}
+	
+	public void printReverse() {
+		printReverse(head);
+	}
+	
+	public void reverse() {
+		ListNode<T> curr = head, prv = null, next = head;
+		
+		while(curr.getNext() != null) {
+			next = curr.getNext();
+			curr.setNext(prv);
+			prv = curr;
+			curr = next;
+		}
+		head = prv;
+	}
+	
 	public static void main(String[] args) {
 
 		LinkedList<Integer> linkedList = new LinkedList<>();
@@ -107,24 +175,46 @@ public class LinkedList<T> {
 		linkedList.addAtIndex(6, 3);
 
 		linkedList.printList();
-		linkedList.printMiddleOfList();
+		System.out.println("Mid of list: " + linkedList.printMiddleOfList());
 		
+		System.out.println("Print in reverse order linkedlist");
+		linkedList.printReverse();
+		
+		System.out.println("\n\nReverse Linkedlist");
+		linkedList.reverse();
+		linkedList.printList();
+		
+		System.out.println("\n deleteMiddleElement");
+		linkedList.deleteMiddleElement();
+		linkedList.printList();
+		System.out.println("Mid of list: " + linkedList.printMiddleOfList());
+		
+		System.out.println("\n addAtIndex 1");
 		linkedList.addAtIndex(6, 1);
 
 		linkedList.printList();
 		
-		linkedList.printMiddleOfList();
+		System.out.println("Mid of list: " + linkedList.printMiddleOfList());
 		
+		System.out.println("Delete entire list");
+		linkedList.clear();
+		linkedList.printList();
+		
+		System.out.println("===========================");
 		linkedList = new LinkedList<>();
 		
 		linkedList.addAtIndex(6, 1);
 
 		linkedList.printList();
-		linkedList.printMiddleOfList();
+		System.out.println("Mid of list: " + linkedList.printMiddleOfList());
+		
+		linkedList.deleteMiddleElement();
+		linkedList.printList();
+	
 		
 		//linkedList.addAtIndex(6, 0);
 		
-		linkedList.addAtIndex(6, 5);
+		// linkedList.addAtIndex(6, 5);
 
 	}
 
