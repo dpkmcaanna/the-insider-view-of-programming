@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LinkedList<T> {
 	ListNode<T> head = null;
+	ListNode<T> left = null;
 
 	public ListNode<T> add(@NonNull T data) {
 		ListNode<T> node = new ListNode<T>(data);
@@ -157,9 +158,42 @@ public class LinkedList<T> {
 		head = prv;
 	}
 	
+	public boolean isLLPanidrom(ListNode<T> right) {
+		left = head;
+		
+		if(right == null) {
+			return true;
+		}
+		
+		boolean first = isLLPanidrom(right.getNext());
+		
+		if(!first) return false;
+		
+		//left = left.getNext();
+		boolean second = left.getData() == right.getData();
+		left = left.getNext();
+		
+		return second;
+	}
+	
+	
+	public boolean isLLPanidrom() {
+		return isLLPanidrom(head);
+	}
+	
 	public static void main(String[] args) {
 
 		LinkedList<Integer> linkedList = new LinkedList<>();
+		
+		linkedList.add(1);
+		linkedList.add(2);
+		linkedList.add(2);
+		linkedList.add(1);
+		
+		System.out.println(linkedList.isLLPanidrom());
+		
+		linkedList = new LinkedList<>();
+		
 		linkedList.add(1);
 		linkedList.add(2);
 		linkedList.add(3);
