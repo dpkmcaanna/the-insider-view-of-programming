@@ -8,6 +8,10 @@ import lombok.experimental.FieldDefaults;
 public class LinkedList<T> {
 	ListNode<T> head = null;
 	ListNode<T> left = null;
+	
+	public ListNode<T> getHead() {
+		return this.head;
+	}
 
 	public ListNode<T> add(@NonNull T data) {
 		ListNode<T> node = new ListNode<T>(data);
