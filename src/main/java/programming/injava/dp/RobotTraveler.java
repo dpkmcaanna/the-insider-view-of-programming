@@ -47,20 +47,14 @@ public class RobotTraveler {
 			return 1;
 		
 		long[][] mem =  new long[row][col];
-		
-		int i = 0;
-		
-		//no of way to traverse first row = 1
-		for(i = 0; i < row; i++)
-			mem[0][i] = 1;
-		
-		//no of way to traverse first col = 1
-		for(i = 0; i < col; i++)
-			mem[i][0] = 1;
-		
-		for(i = 1; i < row; i++) {
-			for(int j = 1; j < col; j++) {
-				mem[i][j] = mem[i - 1][j] + mem[i][j - 1];
+
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < col; j++) {
+				if(i == 0 || j == 0) {
+					mem[i][j] = 1;
+				} else {
+					mem[i][j] = mem[i - 1][j] + mem[i][j - 1];
+				}
 			}
 		}
 		
