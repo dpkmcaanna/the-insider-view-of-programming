@@ -10,7 +10,8 @@ import java.util.List;
 public class FindMaximumSubSqure {
 
 	public static void main(String[] args) {
-		List<List<Integer>> matrix = List.of(List.of(0, 1, 1, 0, 1),
+		List<List<Integer>> matrix = List.of(
+				List.of(0, 1, 1, 0, 1),
 				List.of(1, 1, 0, 1, 0),
 				List.of(0, 1, 1, 1, 0),
 				List.of(1, 1, 1, 1, 0),
@@ -20,6 +21,52 @@ public class FindMaximumSubSqure {
 		int len = findLengthOfMaximumBinarySubSquare(matrix);
 		
 		System.out.println("\n\n========= Side of max sub binary matrix with 1's ========= \n " + len);
+		
+		
+		len = findMaxSubBinraySqure(matrix);
+		
+		System.out.println("\n\n========= Side of max sub binary matrix with 1's ========= \n " + len);
+		
+	}
+	
+	static int findMaxSubBinraySqure(List<List<Integer>> matrix) {
+		int row = matrix.size();
+		int col = matrix.get(0).size();
+		
+		System.out.printf("Row: %s and column: %s\n", row, col);
+		
+		int dp[][] = new int[row][col];
+		
+		int max = 0;
+		int max_i = 0, max_j = 0;
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < col; j++) {
+				if(i == 0 || j == 0) {
+					dp[i][j] = matrix.get(i).get(j);
+				} else {
+					if(matrix.get(i).get(j) == 0) {
+						dp[i][j] = 0;
+					} else {
+						dp[i][j] = Integer.min(Integer.min(dp[i][j-1], dp[i-1][j-1]), dp[i-1][j]) + 1;
+					}
+					//max = Integer.max(max, dp[i][j]);
+					if(dp[i][j] > max) {
+						max = dp[i][j];
+						max_i = i;
+						max_j = j;
+					}
+				}
+			}
+		}
+		
+		for(int k = max_i - max +1; k <= max_i; k++) {
+			for(int m = max_j - max+1; m <= max_j; m++) {
+				System.out.print(matrix.get(k).get(m));
+			}
+			System.out.println();
+		}
+		
+		return max;
 	}
 	
 	static int findLengthOfMaximumBinarySubSquare(List<List<Integer>> matrix) {
