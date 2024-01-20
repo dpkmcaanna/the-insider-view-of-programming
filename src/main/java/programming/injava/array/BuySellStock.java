@@ -30,6 +30,18 @@ public class BuySellStock {
 		return orderBooks;
 	}
 	
+	public static long bookMaxProfit(int[] stockPrice) {
+		long maxProfit = 0;
+		int n = stockPrice.length;
+	
+		for(int i = 1; i < n; i++) {
+			if(stockPrice[i] > stockPrice[i - 1]) {
+				maxProfit += stockPrice[i] - stockPrice[i-1];
+			}
+		}
+		
+		return maxProfit;
+	}
 	
 	public static void main(String[] args) {
 		
@@ -38,6 +50,8 @@ public class BuySellStock {
 		List<OrderBook> orderBooks = findOrderBook(stockPrice);
 		
 		orderBooks.stream().forEach(System.out::println);
+		
+		System.out.println("\n\n-------------------\nMax profit: " +  bookMaxProfit(stockPrice));
 	}
 }
 
