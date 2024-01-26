@@ -15,6 +15,7 @@ public class FindMissingNumber {
 	}
 
 	static int findMissingNumberInGivenKNaturalNo(int[] arr) {
+		System.out.println(arr.length);
 		int actualNoCount = arr.length + 1;
 		int sum = (actualNoCount * (actualNoCount + 1)) / 2;
 
