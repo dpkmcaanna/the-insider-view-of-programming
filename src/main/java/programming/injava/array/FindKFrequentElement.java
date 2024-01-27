@@ -44,7 +44,7 @@ public class FindKFrequentElement {
 		 .map(Map.Entry::getKey)
 		 .orElse(null);
 		 
-		 System.out.println(v);
+		 System.out.println("Printing sorted map: " + v);
 		 
 		 //Collections.sort(freq2.values(), Collections.reverseOrder());
 		 
