@@ -38,7 +38,9 @@ public class FindNearestElement {
 		Arrays.stream(arr)
 				.boxed()
 				.collect(Collectors.groupingBy(e -> Math.abs(target -e), Collectors.mapping(Function.identity(), Collectors.toList())))
-				.entrySet().stream().peek(System.out::println)
+				.entrySet()
+				.stream()
+				.peek(System.out::println)
 				.sorted(Comparator.comparing(Map.Entry::getKey))
 				.forEach(e -> {
 					List<Integer> ele = e.getValue();
@@ -47,7 +49,6 @@ public class FindNearestElement {
 						res.add(it.next());
 						coun.decrementAndGet();
 					}
-					
 				});
 		
 		System.out.println(res);
