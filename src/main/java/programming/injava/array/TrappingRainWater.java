@@ -2,7 +2,7 @@ package programming.injava.array;
 
 
 /**
- * Find maximum water stored in between the building
+ * Find total water stored in between the building
  * 
  * Approach:
  * 

@@ -1,6 +1,7 @@
 package programming.injava.array;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
 
@@ -32,6 +33,9 @@ public class TwoSumProblem {
 
 		tmp = new int[] { -1, -2, -3, -4, -5 };
 		solveTwoSumProblem(tmp, -8);
+		
+		System.out.println("====================findTwoSumV1===================");
+		findTwoSumV1(new int[] { 0, 2, 15, 16, 7 }, 9);
 	}
 
 	private static void solveTwoSumProblem(int[] nums, int target) {
@@ -52,6 +56,23 @@ public class TwoSumProblem {
 		if (nums[li] + nums[ri] == target) {
 			System.out.println("[" + li + ", " + ri + "]");
 		}
+	}
+	
+	private static void findTwoSumV1(int[] nums, int target) {
+		Map<Integer, Integer> eles = new HashMap<Integer, Integer>();
+		
+		int otherElement = 0;
+		
+		for(int i = 0; i <  nums.length; i++) {
+			otherElement = target - nums[i];
+			
+			if(eles.containsKey(otherElement)) {
+				System.out.println("[" + eles.get(otherElement) + ", " + i + "]");
+				break;
+			}
+			eles.put(nums[i], i);
+		}
+		
 	}
 
 }
