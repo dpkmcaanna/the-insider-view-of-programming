@@ -157,14 +157,14 @@ class NestedInteger {
 		return "NestedInteger " + printElement(this, new StringBuilder()) + "";
 	}
 
-	private String printElement(NestedInteger thisNi, StringBuilder sb) {
+	private String printElement(NestedInteger nestedInteger, StringBuilder sb) {
 
-		if (thisNi.isInteger()) {
-			sb.append(thisNi.integer);
+		if (nestedInteger.isInteger()) {
+			sb.append(nestedInteger.integer);
 			sb.append(",");
 		}
 		sb.append("[");
-		for (NestedInteger ni : thisNi.list) {
+		for (NestedInteger ni : nestedInteger.list) {
 			if (ni.isInteger()) {
 				sb.append(ni.integer);
 				sb.append(",");

@@ -1,5 +1,6 @@
 package programming.injava.array;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -16,19 +17,55 @@ public class LongestIncreasingSubsequence {
 	}
 	
 	static int findLengthOfSubsequence(int[] arr) {
+		int n = arr.length;
 		
-		int[] temp = new int[arr.length];
+		int[] temp = new int[n];
 		
 		Arrays.fill(temp, 1); // Every element is subsequnce of len 1
 		
 		// arr[i] >  arr[j] -> ensure sequence is always increasing 
 		// &&  temp[i] < temp[j] + 1 -> ensure length is less than next at jth position
 		
-		for(int i = 1; i < arr.length; i++) {
-			for(int j = 0; j < i; j++)
-				if(arr[i] >  arr[j] && temp[i] < temp[j] + 1) 
+		int[] hash=new int[n];
+		
+	    Arrays.fill(hash,1);
+		
+		for(int i = 0; i < n - 1; i++) {
+			hash[i] = i;
+			for(int j = 0; j <= i; j++) {
+				if(arr[i] >  arr[j] && temp[i] < temp[j] + 1) {
 					temp[i] = temp[j] + 1;
+					hash[i] = j;
+				}
+			}
 		}
+		
+		int maxLen = -1;
+		int lastIndex = -1;
+		
+		for(int i = 0; i < n; i++) {
+			if(temp[i] > maxLen) {
+				maxLen = temp[i];
+				lastIndex = i;
+			}
+		}
+		
+		ArrayList<Integer> lis = new ArrayList<>();
+		lis.add(arr[lastIndex]);
+		
+		while(hash[lastIndex] != lastIndex){ // till not reach the initialization value
+	        lastIndex = hash[lastIndex];
+	        lis.add(arr[lastIndex]);    
+	    }
+	    
+	    // reverse the array 
+	    
+	    System.out.print("The subsequence elements are ");
+		
+	    for(int i=lis.size()-1; i>=0; i--){
+	        System.out.print(lis.get(i)+" ");
+	    }
+	    System.out.println();
 		
 		return Arrays.stream(temp).max().getAsInt();
 	}

@@ -6,7 +6,7 @@ public class FindSubArrayOfGivenSum {
 
 		int[] arr = new int[] { 1, 2, 1, 3, 5 };
 
-		findSubArrayOfGivenSum(arr, 2);
+		findSubArrayOfGivenSum(arr, 3);
 	}
 
 	static void findSubArrayOfGivenSum(int[] arr, int sum) {
