@@ -16,6 +16,21 @@ public class CrushTheFruit {
 		
 		fruitBasket = Arrays.asList(1, 1, 2, 2, 2, 3, 3, 3, 4, 5, 6, 7, 8);
 		findMaxFruitLeftAfterCrush(fruitBasket);
+		
+		fruitBasket = Arrays.asList(1, 2);
+		findMaxFruitLeftAfterCrush(fruitBasket);
+		
+		fruitBasket = Arrays.asList(3, 3, 1, 1, 2);
+		findMaxFruitLeftAfterCrush(fruitBasket);
+		
+		fruitBasket = Arrays.asList(1, 1, 2, 2, 3, 3);
+		findMaxFruitLeftAfterCrush(fruitBasket);
+		
+		fruitBasket = Arrays.asList(1, 1, 1, 2, 3, 4);
+		findMaxFruitLeftAfterCrush(fruitBasket);
+		
+		fruitBasket = Arrays.asList(1, 1, 1, 1, 1);
+		findMaxFruitLeftAfterCrush(fruitBasket);
 	}
 	
 	public static void findMaxFruitLeftAfterCrush(List<Integer> fruitsBasket) {
@@ -23,7 +38,7 @@ public class CrushTheFruit {
 		Map<Integer, Long> fruitsCount = fruitsBasket.stream()
 				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 		
-		System.out.println("Available Fruits in basket: " + fruitsCount);
+		System.out.println("\n\nAvailable Fruits in basket: " + fruitsCount);
 		
 		Queue<Integer> fruitsById = new LinkedList<>();
 		
@@ -63,7 +78,7 @@ public class CrushTheFruit {
 		if(fruitsById.size() > 0) {
 			System.out.println("\n\nRemaing fruits in basket: " +fruitsCount.get(fruitsById.poll()));
 		} else {
-			System.out.println("All fruits are crushed, no leftover");
+			System.out.println("\nAll fruits are crushed, no leftover");
 		}
 		
 		
