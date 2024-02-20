@@ -103,6 +103,11 @@ public class FindLcsInTwoString {
 		findLcsOfTwoGivenString("AGGTAB", "GXTXAYB");
 		System.out.println("=============================================================");
 		findLcsInGivenString("abdcaabdcafghjkl");
+		
+		
+		System.out.println("\n\n\n=============================================================");
+		
+		findLcsInGivenString("bbbbab");
 	}
 
 }
