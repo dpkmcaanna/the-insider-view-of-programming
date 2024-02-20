@@ -47,7 +47,7 @@ public class FindMaximumSubSqure {
 					if(matrix.get(i).get(j) == 0) {
 						dp[i][j] = 0;
 					} else {
-						dp[i][j] = Integer.min(Integer.min(dp[i][j-1], dp[i-1][j-1]), dp[i-1][j]) + 1;
+						dp[i][j] = Integer.min(Integer.min(dp[i][j-1], dp[i-1][j]), dp[i-1][j - 1]) + 1;
 					}
 					//max = Integer.max(max, dp[i][j]);
 					if(dp[i][j] > max) {
