@@ -113,6 +113,10 @@ public class StreamDemo {
 		empL.stream().sorted(Comparator.comparing(Emp::getName).thenComparing(Emp::getSalary))
 					.forEach(System.out::println);
 		
+		System.out.println("------peek-------------------");
+		
+		empL.stream().peek(e -> e.setSalary(e.getSalary() * 10)).forEach(System.out::println);
+		
 		System.out.println("------Comparator-2-------------------");
 		
 		Comparator<Emp> nameComparator = (c1, c2) -> c1.getName().compareTo(c2.getName());
@@ -176,6 +180,10 @@ class Emp {
 
 	public Double getSalary() {
 		return salary;
+	}
+	
+	public void setSalary(Double salary) {
+		this.salary = salary;
 	}
 	
 	public String getCity() {
