@@ -15,7 +15,7 @@ import java.util.Stack;
  * 
  * 
  */
-public class FindWeightSumOfList {
+public class FindWeightedSumOfList {
 
 	public static void main(String[] args) {
 
