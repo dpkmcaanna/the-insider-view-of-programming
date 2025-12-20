@@ -32,7 +32,7 @@ public class LongestIncreasingSubsequence {
 		
 		for(int i = 0; i < n - 1; i++) {
 			hash[i] = i;
-			for(int j = 0; j <= i; j++) {
+			for(int j = 0; j < i; j++) {
 				if(arr[i] >  arr[j] && temp[i] < temp[j] + 1) {
 					temp[i] = temp[j] + 1;
 					hash[i] = j;
